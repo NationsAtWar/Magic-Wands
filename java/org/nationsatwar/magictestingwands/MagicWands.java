@@ -4,12 +4,14 @@ import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
 
+import org.nationsatwar.magictestingwands.commands.CommandListWands;
 import org.nationsatwar.magictestingwands.items.ModItems;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = MagicWands.MODID, name = MagicWands.NAME, version = MagicWands.VERSION)
 public class MagicWands 
@@ -39,6 +41,12 @@ public class MagicWands
 	public static void postInit(FMLPostInitializationEvent event) 
 	{
 		
+	}
+	
+	@Mod.EventHandler
+	public void serverLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandListWands());
 	}
 }
 // can get list of categories in config
