@@ -59,15 +59,19 @@ public class ItemMagicWand extends Item
 		if(!player.worldObj.isRemote)
 		{
 			// replace special strings with data
+			String fixedCommand = command;
+			fixedCommand = fixedCommand.replaceAll("%x", String.valueOf(x));
+			fixedCommand = fixedCommand.replaceAll("%y", String.valueOf(y));
+			fixedCommand = fixedCommand.replaceAll("%z", String.valueOf(z));
 			if(isCommand)
 			{
-				MinecraftServer.getServer().getCommandManager().executeCommand(player, command);
+				MinecraftServer.getServer().getCommandManager().executeCommand(player, fixedCommand);
 				return true;
 			}
 			else
 			{
 				// not that it currently can't be a command, but may want to have it do messages, too.
-				ChatComponentText msg = new ChatComponentText(command);
+				ChatComponentText msg = new ChatComponentText(fixedCommand);
 				player.addChatComponentMessage(msg);
 				return true;
 			}
