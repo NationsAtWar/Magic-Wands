@@ -26,45 +26,52 @@ public class ItemMagicWand extends Item
 		setCreativeTab(CreativeTabs.tabMisc);
 		
 		command = newCommand;
+		if(command.charAt(0) == "/".toCharArray()[0])
+			isCommand = true;
+		else
+			isCommand = false;
 	}
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-	{
-		par2World.playSoundAtEntity(par3EntityPlayer, "random.orb", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-		
-		if(!par3EntityPlayer.worldObj.isRemote)
-		{
-			if(isCommand)
-			{
-				MinecraftServer.getServer().getCommandManager().executeCommand(par3EntityPlayer, command);
-			}
-			else
-			{
-				// not that it currently can't be a command, but may want to have it do messages, too.
-				ChatComponentText msg = new ChatComponentText(command);
-				par3EntityPlayer.addChatComponentMessage(msg);
-			}
-		}
-		return par1ItemStack;
-	}
+	
+	//public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	//{
+	//	if(executeBoundCommand(par3EntityPlayer, par2World, par3EntityPlayer.serverPosX, par3EntityPlayer.serverPosY, par3EntityPlayer.serverPosZ))
+	//	{
+	//		par3EntityPlayer.worldObj.playSoundAtEntity(par3EntityPlayer, "random.orb", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+	//		return par1ItemStack;
+	//	}
+	//	else
+	//		return par1ItemStack;
+	//}
 	
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
 	{
-		player.worldObj.playSoundAtEntity(player, "random.orb", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-		
+		if(executeBoundCommand(player, world, x, y, z))
+		{
+			player.worldObj.playSoundAtEntity(player, "random.orb", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public boolean executeBoundCommand(EntityPlayer player, World world, int x, int y, int z)
+	{
 		if(!player.worldObj.isRemote)
 		{
 			// replace special strings with data
 			if(isCommand)
 			{
 				MinecraftServer.getServer().getCommandManager().executeCommand(player, command);
+				return true;
 			}
 			else
 			{
 				// not that it currently can't be a command, but may want to have it do messages, too.
 				ChatComponentText msg = new ChatComponentText(command);
 				player.addChatComponentMessage(msg);
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 }
