@@ -46,4 +46,25 @@ public class ItemMagicWand extends Item
 		}
 		return par1ItemStack;
 	}
+	
+	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
+	{
+		player.worldObj.playSoundAtEntity(player, "random.orb", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+		
+		if(!player.worldObj.isRemote)
+		{
+			// replace special strings with data
+			if(isCommand)
+			{
+				MinecraftServer.getServer().getCommandManager().executeCommand(player, command);
+			}
+			else
+			{
+				// not that it currently can't be a command, but may want to have it do messages, too.
+				ChatComponentText msg = new ChatComponentText(command);
+				player.addChatComponentMessage(msg);
+			}
+		}
+		return true;
+	}
 }
