@@ -4,6 +4,7 @@ import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
 
+import org.nationsatwar.magictestingwands.commands.CommandAddWand;
 import org.nationsatwar.magictestingwands.commands.CommandListWands;
 import org.nationsatwar.magictestingwands.items.ModItems;
 
@@ -26,7 +27,7 @@ public class MagicWands
 	{
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		//String testString = config.get("Wands", "Another Wand", "Your command here!").getString();
+		//String testString = config.get("wands", "Another Wand", "Your command here!").getString();
 		//config.save();
 		ModItems.init();
 	}
@@ -47,6 +48,7 @@ public class MagicWands
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandListWands());
+		event.registerServerCommand(new CommandAddWand());
 	}
 }
 // can get list of categories in config
