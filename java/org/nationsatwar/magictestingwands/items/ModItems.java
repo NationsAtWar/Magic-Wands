@@ -27,7 +27,8 @@ public final class ModItems
 		
 		for (String key : val.keySet()) 
 		{
-		    magicWand = new ItemMagicWand(key,val.get(key).getString());
+			if(val.get(key).getBoolean())
+				magicWand = new ItemMagicWand(key);
 		}
 	}
 }
