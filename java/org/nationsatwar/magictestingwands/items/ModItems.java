@@ -21,7 +21,7 @@ public final class ModItems
 		//{
 		//	magicWand = new ItemMagicWand("MagicWand" + Integer.toString(i));
 		//}
-		ConfigCategory wandCategory = MagicWands.config.getCategory("wands");
+		ConfigCategory wandCategory = MagicWands.config.getCategory(MagicWands.wandCategory);
 		
 		Map<String, Property> val = wandCategory.getValues();
 		
