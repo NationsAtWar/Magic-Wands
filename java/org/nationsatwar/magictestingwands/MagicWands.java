@@ -3,6 +3,7 @@ package org.nationsatwar.magictestingwands;
 import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
+
 import org.nationsatwar.magictestingwands.items.ModItems;
 
 import cpw.mods.fml.common.Mod;
@@ -20,7 +21,7 @@ public class MagicWands
     public static Configuration config;
     
     public static String wandCategory = "wands";
-    public String wandCategoryComment = "Add wands here, in the format 'B:\"[name]\"=[boolean]'. One wand per line. Name can include spaces. Set \nboolean to 'true' to generate and register the wand when starting the server, or to 'false' not to \ngenerate and register the wand.";
+    public String wandCategoryComment = "Add wands here, in the format 'B:\"[name]\"=[boolean]'. One wand per line. Name can include spaces. Set \nboolean to 'true' to generate and register the wand when starting the server, or to 'false' not to \ngenerate and register the wand. Item unlocalised name will be magictestingwands_[name]";
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) 
