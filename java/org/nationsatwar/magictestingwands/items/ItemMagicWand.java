@@ -15,14 +15,22 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemMagicWand extends Item 
 {	
-	private String command = "";
-	private boolean isCommand = true;
+	private String stackName = "";
 	
 	public ItemMagicWand(String name)
 	{
-		setUnlocalizedName(MagicWands.MODID + "_" + name);
+		setUnlocalizedName(MagicWands.MODID + "_" + name.replaceAll(" ", "_"));
 		setTextureName(MagicWands.MODID + ":" + "magicWand");
 		GameRegistry.registerItem(this, name);
 		setCreativeTab(CreativeTabs.tabMisc);
+		
+		setMaxStackSize(1);
+		stackName = name;
+	}
+	
+	@Override
+	public String getItemStackDisplayName(ItemStack p_77653_1_) 
+	{
+		return stackName;
 	}
 }

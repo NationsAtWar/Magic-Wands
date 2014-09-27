@@ -21,7 +21,7 @@ public class MagicWands
     public static Configuration config;
     
     public static String wandCategory = "wands";
-    public String wandCategoryComment = "Add wands here, in the format 'B:\"[name]\"=[boolean]'. One wand per line. Name can include spaces. Set \nboolean to 'true' to generate and register the wand when starting the server, or to 'false' not to \ngenerate and register the wand. Item unlocalised name will be magictestingwands_[name]";
+    public String wandCategoryComment = "Add wands here, in the format 'B:\"[name]\"=[boolean]'. One wand per line. Name can include spaces, which \nwill be replaced with underscores in the unlocalised name. Set boolean to 'true' to generate \nand register the wand when starting the server, or to 'false' not to generate and register the \nwand. Item unlocalised name will be magictestingwands_[name]";
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) 
